@@ -82,7 +82,7 @@ def get_sink_input():
         proc = Popen('pactl list sink-inputs', shell=True, stdout=PIPE)
         for line in iter(proc.stdout.readline, b''):
             if "Sink Input" in line:
-                curInput = int(line[-2])
+                curInput = int(line.split("#")[1].strip())
                 continue
             elif "Spotify" in line:
                 return curInput
